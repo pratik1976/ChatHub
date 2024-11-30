@@ -1,5 +1,5 @@
 ChatHub
-Mini WhatsApp-like Chat Application
+(Mini WhatsApp-like Chat Application)
 
 1. Developed a chat application to handle sending, receiving, editing, and deleting chats.
 2. Designed and implemented a MongoDB database for efficient data storage and retrieval.
