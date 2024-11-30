@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>ChatHub</h1>
+    </header>
+
+    <main class="chat-container">
+        <section class="chat-list">
+            <!-- Header for Chat List -->
+            <div class="chat-list-header">
+                <h3>All Chats</h3>
+                <form action="/chats/new" method="GET" class="new-chat-btn">
+                    <button>New Chat</button>
+                </form>
+            </div>
+
+            <!-- Display all chats -->
+            <% for (let chat of chats) { %>
+                <div class="chat">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <p><strong>From:</strong> <i><%= chat.from %></i></p>
+                        <p class="time-stamp">
+                            <%= chat.created_at.toString().split(" ")[4] %>, 
+                            <%= chat.created_at.toString().split(" ").slice(0, 4).join(" ") %>
+                        </p>
+                    </div>
+
+                    <!-- Chat Body -->
+                    <div class="chat-body">
+                        <p class="chat-message"><%= chat.msg %></p>
+                    </div>
+
+                    <!-- Chat Actions -->
+                    <div class="chat-actions">
+                        <form action="/chats/<%= chat._id %>/edit" method="GET">
+                            <button class="edit-btn">Edit</button>
+                        </form>
+                        <form action="/chats/<%= chat._id %>?_method=DELETE" method="POST">
+                            <button class="delete-btn">Delete</button>
+                        </form>
+                    </div>
+
+                    <!-- Chat Footer -->
+                    <div class="chat-footer">
+                        <p><strong>To:</strong> <i><%= chat.to %></i></p>
+                    </div>
+                </div>
+            <% } %>
+        </section>
+    </main>
+</body>
+</html>
+
